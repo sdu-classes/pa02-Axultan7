@@ -1,4 +1,22 @@
-public class Main{
+public class Main {
+    public class Main {
+    public static void main(String[] args) {
+        Animal animal = new Animal("Elephant");
+        System.out.println(animal);
+        Mammal mammal = new Mammal("Bear");
+        System.out.println(mammal);
+        Cat cat = new Cat("Smoki");
+        cat.greets();
+        System.out.println(cat);
+        Dog dog1 = new Dog("Sharik");
+        dog1.greets();
+        Dog another = new Dog("Tuzik");
+        dog1.greets(another);
+        System.out.println(dog1);
+
+    }
+}
+}
 public class Animal {
     private String name;
     public Animal(String name){
@@ -53,5 +71,4 @@ public class Dog extends Mammal{
     public String toString(){
         return String.format("Dog[%s]",super.toString());
     }
-}
 }
