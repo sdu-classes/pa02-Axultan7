@@ -1,3 +1,33 @@
+public class Mainn {
+    public static void main(String[] args) {
+
+
+        Circle c1 = new Circle(6.7 , "yellow" , false);                   // Downcast back to Circle
+        System.out.println(c1);
+        System.out.println(c1.getArea());
+        System.out.println(c1.getPerimeter());
+        System.out.println(c1.getColor());
+        System.out.println(c1.isFilled());
+        System.out.println(c1.getRadius());
+
+
+
+        Rectangle r1 = new Rectangle(4.1 , 1.5 , "blue" , false);   // downcast
+        System.out.println(r1);
+        System.out.println(r1.getArea());
+        System.out.println(r1.getPerimeter());
+        System.out.println(r1.getColor());
+        System.out.println(r1.getLength());
+
+
+        Square sq1 = new Square(7.4);
+        System.out.println(sq1);
+        System.out.println(sq1.getArea());
+        System.out.println(sq1.getColor());
+        System.out.println(sq1.getSide());
+
+    }
+}
 public class Person {
     private String name;
     private String address;
