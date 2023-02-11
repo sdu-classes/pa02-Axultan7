@@ -1,8 +1,8 @@
-public class Mainn {
+public class Main {
     public static void main(String[] args) {
 
 
-        Circle c1 = new Circle(6.7 , "yellow" , false);                   // Downcast back to Circle
+        Circle c1 = new Circle(5.5 , "red" , false);                   // Downcast back to Circle
         System.out.println(c1);
         System.out.println(c1.getArea());
         System.out.println(c1.getPerimeter());
@@ -12,7 +12,7 @@ public class Mainn {
 
 
 
-        Rectangle r1 = new Rectangle(4.1 , 1.5 , "blue" , false);   // downcast
+        Rectangle r1 = new Rectangle(3.8 , 2.5 , "green" , false);   // downcast
         System.out.println(r1);
         System.out.println(r1.getArea());
         System.out.println(r1.getPerimeter());
@@ -20,7 +20,7 @@ public class Mainn {
         System.out.println(r1.getLength());
 
 
-        Square sq1 = new Square(7.4);
+        Square sq1 = new Square(6.6);
         System.out.println(sq1);
         System.out.println(sq1.getArea());
         System.out.println(sq1.getColor());
@@ -28,99 +28,145 @@ public class Mainn {
 
     }
 }
-public class Person {
-    private String name;
-    private String address;
+public class Shape {
+    private String color = "red";
+    private boolean filled = true;
+    public Shape(){
 
- 
-    public Person(String name, String address){
-        this.name = name;
-        this.address = address;
     }
-    
-    public String getName(){
-        return this.name;
+    public Shape(String color , boolean filled){
+        this.color = color;
+        this.filled = filled;
     }
-    public String getAddress(){
-        return this.address;
+
+    public void setColor(String color) {
+        this.color = color;
     }
-   
-    public void setAddress(String address){
-        this.address = address;
+
+    public String getColor() {
+        return color;
     }
-   
+
+    public boolean isFilled() {
+        return filled;
+    }
+
+    public void setFilled(boolean filled) {
+        this.filled = filled;
+    }
+    public String toString(){
+        return String.format("Shape[color=%s,filled%b]", this.color ,this.filled);
+    }
+}
+
+public class Circle extends Shape{
+    private double radius = 1.0;
+    public Circle(){
+
+    }
+    public Circle(double radius){
+        this.radius = radius;
+    }
+    public Circle(double radius , String color , boolean filled){
+        this.radius = radius;
+        this.setColor(color);
+        this.setFilled(filled);
+    }
+
+    public void setRadius(double radius) {
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+    public double getArea() {
+        return Math.PI*radius*radius;
+    }
+    public double getPerimeter (){
+        return Math.PI*2*radius;
+    }
     @Override
     public String toString(){
-        return "Person[name=" + this.name + ",address=" + this.address + "]";
+        return String.format("Circle[%s,radius=%.3f]" , super.toString(),radius);
     }
 }
 
-public class Student extends Person {
-        private String program;
-        private int year;
-        private double fee;
+public class Rectangle extends Shape{
+    private double width = 1.0;
+    private double length = 1.0;
+    public Rectangle(){
 
-      
-        public Student(String name, String address, String program, int year, double fee){
-            super(name, address);
-            this.program = program;
-            this.year = year;
-            this.fee = fee;
-        }
-        
-        public String getProgram(){
-            return this.program;
-        }
-        public int getYear(){
-            return this.year;
-        }
-        public double getFee(){
-            return this.fee;
-        }
-       
-        public void setProgram(String program){
-            this.program = program;
-        }
-        public void setYear(int year){
-            this.year = year;
-        }
-        public void setFee(double fee){
-            this.fee = fee;
-        }
-       
-        @Override
-        public String toString(){
-            return "Student[" + super.toString() + ",program=" + this.program + ",year=" + this.year + ",fee=" + this.fee + "]";
-        }
+    }
+    public Rectangle(double width , double length){
+        this.width = width;
+        this.length = length;
+    }
+    public Rectangle(double width , double length , String color , boolean filled){
+        this.width = width;
+        this.length = length;
+        this.setColor(color);
+        this.setFilled(filled);
+    }
+
+    public double getWidth(){
+        return width;
+    }
+    public void setWidth(double width){
+        this.width = width;
+    }
+    public double getLength() {
+        return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
+    }
+    public double getArea(){
+        return width*length;
+    }
+    public double getPerimeter(){
+        return 2*(width + length);
+    }
+    @Override
+    public String toString(){
+        return String.format("Rectangle[%s],width=%.3f,length=%.3f" , super.toString() , this.width ,this.length);
+    }
+
 }
 
-    public class Staff extends Person {
-        private String school;
-        private double pay;
+import java.util.Random;
 
-       
-        public Staff(String name, String address, String school, double pay){
-            super(name, address);
-            this.school = school;
-            this.pay = pay;
-        }
-      
-        public String getSchool(){
-            return this.school;
-        }
-        public double getPay(){
-            return this.pay;
-        }
-       
-        public void setSchool(String school){
-            this.school = school;
-        }
-        public void setPay(double pay){
-            this.pay = pay;
-        }
-       
-        @Override
-        public String toString(){
-            return "Staff[" + super.toString() + ",school=" + this.school + ",pay=" + this.pay + "]";
-        }
+public class Square extends Rectangle {
+    public Square(){
+
     }
+    public Square(double side){
+       super(side , side);
+    }
+    public Square(double side , String color , boolean filled){
+        setWidth(side);
+        setLength(side);
+        setColor(color);
+        setFilled(filled);
+    }
+    public void setSide(double side){
+   super.setWidth(side);
+    }
+    public double getSide(){
+        return getWidth();
+    }
+
+    @Override
+    public void setLength(double length) {
+        super.setLength(length);
+    }
+
+    @Override
+    public void setWidth(double width) {
+        super.setWidth(width);
+    }
+    public String toString(){
+        return String.format("Square[%s]" , super.toString());
+    }
+}
